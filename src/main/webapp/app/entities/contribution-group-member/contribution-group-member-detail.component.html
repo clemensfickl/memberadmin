@@ -1,0 +1,42 @@
+
+<div *ngIf="contributionGroupMember">
+    <h2><span jhiTranslate="memberadminApp.contributionGroupMember.detail.title">Contribution Group Member</span> {{contributionGroupMember.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="memberadminApp.contributionGroupMember.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{contributionGroupMember.startDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.contributionGroupMember.endDate">End Date</span></dt>
+        <dd>
+            <span>{{contributionGroupMember.endDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.contributionGroupMember.group">Group</span></dt>
+        <dd>
+            <div *ngIf="contributionGroupMember.groupId">
+                <a [routerLink]="['/contribution-group', contributionGroupMember.groupId]">{{contributionGroupMember.groupName}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.contributionGroupMember.member">Member</span></dt>
+        <dd>
+            <div *ngIf="contributionGroupMember.memberId">
+                <a [routerLink]="['/member', contributionGroupMember.memberId]">{{contributionGroupMember.memberId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'contribution-group-member/'+ contributionGroupMember.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

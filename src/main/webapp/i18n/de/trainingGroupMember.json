@@ -1,0 +1,26 @@
+
+{
+    "memberadminApp": {
+        "trainingGroupMember" : {
+            "home": {
+                "title": "Training Group Members",
+                "createLabel": "Training Group Member erstellen",
+                "createOrEditLabel": "Training Group Member erstellen oder bearbeiten",
+                "search": "Suche nach Training Group Member"
+            },
+            "created": "Training Group Member erstellt mit ID {{ param }}",
+            "updated": "Training Group Member aktualisiert mit ID {{ param }}",
+            "deleted": "Training Group Member gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Training Group Member {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Training Group Member"
+            },
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "group": "Group",
+            "member": "Member"
+        }
+    }
+}

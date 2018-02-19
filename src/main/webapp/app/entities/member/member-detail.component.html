@@ -1,0 +1,94 @@
+
+<div *ngIf="member">
+    <h2><span jhiTranslate="memberadminApp.member.detail.title">Member</span> {{member.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="memberadminApp.member.firstName">First Name</span></dt>
+        <dd>
+            <span>{{member.firstName}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.lastName">Last Name</span></dt>
+        <dd>
+            <span>{{member.lastName}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.title">Title</span></dt>
+        <dd>
+            <span>{{member.title}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.sex">Sex</span></dt>
+        <dd>
+            <span jhiTranslate="{{'memberadminApp.Sex.' + member.sex}}">{{member.sex}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.birthdate">Birthdate</span></dt>
+        <dd>
+            <span>{{member.birthdate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.email">Email</span></dt>
+        <dd>
+            <span>{{member.email}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.phoneNumber">Phone Number</span></dt>
+        <dd>
+            <span>{{member.phoneNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.entryDate">Entry Date</span></dt>
+        <dd>
+            <span>{{member.entryDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.terminationDate">Termination Date</span></dt>
+        <dd>
+            <span>{{member.terminationDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.exitDate">Exit Date</span></dt>
+        <dd>
+            <span>{{member.exitDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.streetAddress">Street Address</span></dt>
+        <dd>
+            <span>{{member.streetAddress}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.postalCode">Postal Code</span></dt>
+        <dd>
+            <span>{{member.postalCode}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.city">City</span></dt>
+        <dd>
+            <span>{{member.city}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.province">Province</span></dt>
+        <dd>
+            <span>{{member.province}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.country">Country</span></dt>
+        <dd>
+            <span>{{member.country}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.vote">Vote</span></dt>
+        <dd>
+            <span>{{member.vote}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.oerv">Oerv</span></dt>
+        <dd>
+            <span>{{member.oerv}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.member.comment">Comment</span></dt>
+        <dd>
+            <span>{{member.comment}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'member/'+ member.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,26 @@
+
+{
+    "memberadminApp": {
+        "contributionGroupMember" : {
+            "home": {
+                "title": "Contribution Group Members",
+                "createLabel": "Create a new Contribution Group Member",
+                "createOrEditLabel": "Create or edit a Contribution Group Member",
+                "search": "Search for Contribution Group Member"
+            },
+            "created": "A new Contribution Group Member is created with identifier {{ param }}",
+            "updated": "A Contribution Group Member is updated with identifier {{ param }}",
+            "deleted": "A Contribution Group Member is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Contribution Group Member {{ id }}?"
+            },
+            "detail": {
+                "title": "Contribution Group Member"
+            },
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "group": "Group",
+            "member": "Member"
+        }
+    }
+}

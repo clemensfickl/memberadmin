@@ -1,0 +1,42 @@
+
+<div *ngIf="trainingGroupMember">
+    <h2><span jhiTranslate="memberadminApp.trainingGroupMember.detail.title">Training Group Member</span> {{trainingGroupMember.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="memberadminApp.trainingGroupMember.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{trainingGroupMember.startDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.trainingGroupMember.endDate">End Date</span></dt>
+        <dd>
+            <span>{{trainingGroupMember.endDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.trainingGroupMember.group">Group</span></dt>
+        <dd>
+            <div *ngIf="trainingGroupMember.groupId">
+                <a [routerLink]="['/training-group', trainingGroupMember.groupId]">{{trainingGroupMember.groupName}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="memberadminApp.trainingGroupMember.member">Member</span></dt>
+        <dd>
+            <div *ngIf="trainingGroupMember.memberId">
+                <a [routerLink]="['/member', trainingGroupMember.memberId]">{{trainingGroupMember.memberId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'training-group-member/'+ trainingGroupMember.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

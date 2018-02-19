@@ -1,0 +1,105 @@
+<div>
+    <h2>
+        <span jhiTranslate="memberadminApp.member.home.title">Members</span>
+        <button class="btn btn-primary float-right jh-create-entity create-member" [routerLink]="['/', { outlets: { popup: ['member-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="memberadminApp.member.home.createLabel">
+            Create new Member
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'memberadminApp.member.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="members">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="firstName"><span jhiTranslate="memberadminApp.member.firstName">First Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lastName"><span jhiTranslate="memberadminApp.member.lastName">Last Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="title"><span jhiTranslate="memberadminApp.member.title">Title</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="sex"><span jhiTranslate="memberadminApp.member.sex">Sex</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="birthdate"><span jhiTranslate="memberadminApp.member.birthdate">Birthdate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="email"><span jhiTranslate="memberadminApp.member.email">Email</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="phoneNumber"><span jhiTranslate="memberadminApp.member.phoneNumber">Phone Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="entryDate"><span jhiTranslate="memberadminApp.member.entryDate">Entry Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="terminationDate"><span jhiTranslate="memberadminApp.member.terminationDate">Termination Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="exitDate"><span jhiTranslate="memberadminApp.member.exitDate">Exit Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="streetAddress"><span jhiTranslate="memberadminApp.member.streetAddress">Street Address</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="postalCode"><span jhiTranslate="memberadminApp.member.postalCode">Postal Code</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="city"><span jhiTranslate="memberadminApp.member.city">City</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="province"><span jhiTranslate="memberadminApp.member.province">Province</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="country"><span jhiTranslate="memberadminApp.member.country">Country</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="vote"><span jhiTranslate="memberadminApp.member.vote">Vote</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="oerv"><span jhiTranslate="memberadminApp.member.oerv">Oerv</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="comment"><span jhiTranslate="memberadminApp.member.comment">Comment</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let member of members ;trackBy: trackId">
+                <td><a [routerLink]="['../member', member.id ]">{{member.id}}</a></td>
+                <td>{{member.firstName}}</td>
+                <td>{{member.lastName}}</td>
+                <td>{{member.title}}</td>
+                <td jhiTranslate="{{'memberadminApp.Sex.' + member.sex}}">{{member.sex}}</td>
+                <td>{{member.birthdate | date:'mediumDate'}}</td>
+                <td>{{member.email}}</td>
+                <td>{{member.phoneNumber}}</td>
+                <td>{{member.entryDate | date:'mediumDate'}}</td>
+                <td>{{member.terminationDate | date:'mediumDate'}}</td>
+                <td>{{member.exitDate | date:'mediumDate'}}</td>
+                <td>{{member.streetAddress}}</td>
+                <td>{{member.postalCode}}</td>
+                <td>{{member.city}}</td>
+                <td>{{member.province}}</td>
+                <td>{{member.country}}</td>
+                <td>{{member.vote}}</td>
+                <td>{{member.oerv}}</td>
+                <td>{{member.comment}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../member', member.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'member/'+ member.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'member/'+ member.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
