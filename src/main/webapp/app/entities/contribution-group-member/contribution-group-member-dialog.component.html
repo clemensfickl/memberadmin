@@ -44,7 +44,7 @@
             <label class="form-control-label" jhiTranslate="memberadminApp.contributionGroupMember.member" for="field_member">Member</label>
             <select class="form-control" id="field_member" name="member" [(ngModel)]="contributionGroupMember.memberId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="memberOption.id" *ngFor="let memberOption of members; trackBy: trackMemberById">{{memberOption.id}}</option>
+                <option [ngValue]="memberOption.id" *ngFor="let memberOption of members; trackBy: trackMemberById">{{memberOption.firstName}} {{memberOption.lastName}}</option>
             </select>
         </div>
     </div>
